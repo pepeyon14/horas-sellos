@@ -1,0 +1,19 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2 class="mat-card-title">Consulta de Horas Sello</h2>
+
+    <label for="rut">Ingresa tu RUT:</label>
+    <input
+      class="full-width-input"
+      [(ngModel)]="rut"
+      placeholder="Ej: 12345678-9"
+      id="rut"
+    />
+
+    <!-- Botón para consultar horas -->
+    <button class="full-width-button" (click)="irAHorasSello()">Consultar</button>
+
+    <!-- Botón para volver al inicio con estilo personalizado -->
+    <button class="full-width-button back-button" (click)="volverInicio()">Volver al Inicio</button>
+  </div>
+</div>

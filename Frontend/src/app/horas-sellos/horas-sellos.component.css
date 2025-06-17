@@ -1,0 +1,51 @@
+.horas-sello-wrapper {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 50, 100, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo-principal {
+  text-align: center;
+  color: #003366;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+.tabla-horas {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.tabla-horas thead {
+  background: linear-gradient(90deg, #00509e, #0077d9);
+  color: white;
+  font-weight: 600;
+}
+
+.tabla-horas th,
+.tabla-horas td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-horas tbody tr:hover {
+  background-color: #f0f8ff;
+}
+
+.total-horas {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #00509e;
+  text-align: right;
+}

@@ -1,0 +1,50 @@
+.inicio-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a2e5c, #5a8dde);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inicio-card {
+  max-width: 450px;
+  width: 100%;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 50, 100, 0.25);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.inicio-card:hover {
+  box-shadow: 0 18px 45px rgba(0, 50, 100, 0.35);
+}
+
+.inicio-title {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003366;
+  letter-spacing: 1px;
+}
+
+.inicio-button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(90deg, #00509e, #0077d9);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.inicio-button:hover {
+  background: linear-gradient(90deg, #0077d9, #00509e);
+}
