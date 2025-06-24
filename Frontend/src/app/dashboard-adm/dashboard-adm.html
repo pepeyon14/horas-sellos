@@ -10,6 +10,7 @@
           <mat-label>Nombre del Evento</mat-label>
           <input matInput [(ngModel)]="eventName" name="eventName" required>
         </mat-form-field>
+      
 
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Descripción</mat-label>
@@ -43,10 +44,14 @@
           <input matInput type="number" [(ngModel)]="eventHours" name="eventHours" required>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" class="full-width-button">
-          Crear Evento
-        </button>
+      <button mat-raised-button color="primary" type="submit" class="full-width-button">
+        Crear Evento
+      </button>
+      <button mat-raised-button color="accent" class="go-to-registro-button" (click)="goToRegistroHoras()">
+        Ir a Registro de Horas
+      </button>
       </form>
+      
 
       <mat-divider class="dashboard-divider"></mat-divider>
 
@@ -123,5 +128,10 @@
         </table>
       </div>
     </mat-card-content>
+      <div class="logout-button-container">
+        <button mat-raised-button color="warn" class="logout-button" (click)="logout()">
+          Cerrar Sesión
+        </button>
+      </div>
   </mat-card>
 </div>

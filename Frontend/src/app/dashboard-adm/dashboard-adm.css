@@ -53,7 +53,6 @@ h2 {
   margin-top: 20px;
   font-size: 1.1em;
   padding: 10px 0;
-  background-color: #003366; /* Un azul más oscuro para los botones principales */
   color: white;
 }
 
@@ -72,6 +71,33 @@ h2 {
 /* Estilos para las acciones en la tabla */
 .mat-icon-button {
   margin: 0 5px;
+}
+
+/* Estilos para el nuevo botón de navegación */
+.go-to-registro-button {
+  margin-top: 20px;
+  margin-bottom: 20px; /* Un poco de espacio antes del siguiente contenido */
+  width: 100%; /* Para que ocupe todo el ancho si lo prefieres */
+  font-size: 1.1em;
+  padding: 10px 0;
+  background-color: #3f51b5;
+}
+
+.logout-button {
+  background-color: red; /* Rojo para cerrar sesión */
+  color: white;
+  font-size: 1.0em;
+  padding: 15px 15px;
+}
+
+.logout-button:hover {
+  background-color: red;
+}
+
+.logout-button-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; /* Espacio superior para el botón de cerrar sesión */
 }
 
 /* Responsive adjustments */

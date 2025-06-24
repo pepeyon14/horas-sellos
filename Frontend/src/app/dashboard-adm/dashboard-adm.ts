@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router'; // <-- ¡IMPORTA EL ROUTER AQUÍ!
+import { AuthService } from '../auth.service';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -37,7 +39,7 @@ import { MatDividerModule } from '@angular/material/divider';
   templateUrl: './dashboard-adm.html',
   styleUrl: './dashboard-adm.css'
 })
-export class DashboardAdm implements OnInit {
+export class DashboardAdmComponent implements OnInit {
 
   eventId: number | null = null;
   eventName: string = '';
@@ -62,13 +64,21 @@ export class DashboardAdm implements OnInit {
     'acciones'
   ];
 
-  constructor() { }
-
-  ngOnInit(): void {
+constructor(private router: Router, private authService: AuthService) { }  ngOnInit(): void {
     this.loadEvents();
+  }
+  
+  goToRegistroHoras(): void {
+    this.router.navigate(['/registro-horas']);
+  }
+
+   logout(): void {
+    this.authService.logout(); // Llama al método logout de tu AuthService
+    this.router.navigate(['/login']); // Redirige al usuario a la página de login
   }
 
   loadEvents(): void {
+    
     this.events = [
       {
         id: 1,
@@ -81,6 +91,7 @@ export class DashboardAdm implements OnInit {
         cantidadHoras: 5,
         estado: true
       },
+      
       {
         id: 2,
         nombre: 'Clases de Apoyo',

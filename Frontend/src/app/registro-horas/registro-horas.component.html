@@ -1,0 +1,145 @@
+<div class="registro-container">
+  <mat-card class="registro-card">
+    <mat-card-title class="registro-title">
+      Gestión de Registro de Horas Sello
+    </mat-card-title>
+    <mat-card-content>
+      <!-- Sección para Crear/Editar Registro de Horas -->
+      <h2>{{ registroId ? 'Editar Registro de Horas' : 'Registrar Nuevas Horas' }}</h2>
+      <form (ngSubmit)="onSubmitRegistroHorasForm()" class="registro-form">
+
+        <!-- Selección de Evento -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Evento</mat-label>
+          <mat-select [(ngModel)]="selectedEventoId" name="selectedEventoId" required (selectionChange)="onEventoSelected()">
+            <mat-option *ngFor="let evento of eventos" [value]="evento.id">
+              {{ evento.nombre }} ({{ evento.cantidadHoras }} hrs)
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Selección de Alumno -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Alumno</mat-label>
+          <mat-select [(ngModel)]="selectedRutAlumno" name="selectedRutAlumno" required>
+            <mat-option *ngFor="let alumno of alumnos" [value]="alumno.rut">
+              {{ alumno.nombre }} ({{ alumno.rut }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Selección de Administrativo -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Administrativo que Registra</mat-label>
+          <mat-select [(ngModel)]="selectedRutAdministrativo" name="selectedRutAdministrativo" required>
+            <mat-option *ngFor="let admin of administrativos" [value]="admin.rut">
+              {{ admin.nombre }} ({{ admin.rut }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Campo Fecha de Inicio -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio" name="fechaInicio" required>
+          <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicio></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Campo Fecha de Término -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Fecha de Término</mat-label>
+          <input matInput [matDatepicker]="pickerTermino" [(ngModel)]="fechaTermino" name="fechaTermino" required>
+          <mat-datepicker-toggle matSuffix [for]="pickerTermino"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTermino></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Cantidad de Horas Otorgadas -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Horas Otorgadas</mat-label>
+          <input matInput type="number" [(ngModel)]="cantidadHorasOtorgadas" name="cantidadHorasOtorgadas" required>
+        </mat-form-field>
+
+        <!-- Botones de Acción del Formulario -->
+        <div class="form-buttons">
+          <button mat-raised-button color="primary" type="submit" class="button-action">
+            {{ registroId ? 'Actualizar Registro' : 'Crear Registro' }}
+          </button>
+            <button mat-raised-button color="primary" class="go-back-button" (click)="goToAdminDashboard()">
+            Volver al Dashboard de Eventos
+        </button>
+          <button *ngIf="registroId" mat-button color="warn" type="button" (click)="resetForm()" class="button-action clear-button">
+            Cancelar Edición
+          </button>
+        </div>
+      </form>
+
+      <mat-divider class="registro-divider"></mat-divider>
+
+      <!-- Sección para Mostrar Registros de Horas -->
+      <h2>Registros de Horas Actuales</h2>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="registrosHoras" class="full-width-table">
+
+          <!-- Columna ID_HoraSello -->
+          <ng-container matColumnDef="idHoraSello">
+            <th mat-header-cell *matHeaderCellDef> ID Registro </th>
+            <td mat-cell *matCellDef="let element"> {{element.idHoraSello}} </td>
+          </ng-container>
+
+          <!-- Columna Evento (muestra el nombre del evento) -->
+          <ng-container matColumnDef="evento">
+            <th mat-header-cell *matHeaderCellDef> Evento </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreEvento}} </td>
+          </ng-container>
+
+          <!-- Columna Alumno (muestra el nombre del alumno) -->
+          <ng-container matColumnDef="alumno">
+            <th mat-header-cell *matHeaderCellDef> Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreAlumno}} </td>
+          </ng-container>
+
+          <!-- Columna Administrativo (muestra el nombre del admin) -->
+          <ng-container matColumnDef="administrativo">
+            <th mat-header-cell *matHeaderCellDef> Registrado por </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreAdministrativo}} </td>
+          </ng-container>
+
+          <!-- Columna Fecha de Inicio -->
+          <ng-container matColumnDef="fechaInicio">
+            <th mat-header-cell *matHeaderCellDef> Inicio </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date:'shortDate'}} </td>
+          </ng-container>
+
+          <!-- Columna Fecha de Término -->
+          <ng-container matColumnDef="fechaTermino">
+            <th mat-header-cell *matHeaderCellDef> Término </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaTermino | date:'shortDate'}} </td>
+          </ng-container>
+
+          <!-- Columna Cantidad de Horas -->
+          <ng-container matColumnDef="cantidadHoras">
+            <th mat-header-cell *matHeaderCellDef> Horas </th>
+            <td mat-cell *matCellDef="let element"> {{element.cantidadHoras}} </td>
+          </ng-container>
+
+          <!-- Columna Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent" (click)="editRegistroHoras(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteRegistroHoras(element.idHoraSello)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
