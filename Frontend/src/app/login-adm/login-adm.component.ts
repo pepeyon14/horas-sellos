@@ -11,9 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon'; // Si usas <mat-icon>
 
-// Importa tu AuthService para manejar la lógica de autenticación
-import { AuthService } from '../auth.service'; // <-- ¡IMPORTA TU AUTHSERVICE AQUÍ!
-
 @Component({
   selector: 'app-login-adm',
   standalone: true,
@@ -44,7 +41,7 @@ export class LoginAdmComponent {
         next: (res) => {
           localStorage.setItem('token', res.token);
           // redirige a la vista protegida
-          this.router.navigate(['/horas-sellos']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           alert(err.error?.error || 'Credenciales inválidas');
