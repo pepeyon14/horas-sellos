@@ -1,0 +1,82 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  background-color: #f0f2f5; /* Un fondo suave para el dashboard */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 1200px; /* Ancho máximo para la tarjeta grande del dashboard */
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2.2em;
+  color: #3f51b5; /* Color primario de Material Design */
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #3f51b5;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.event-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre los campos del formulario */
+}
+
+.full-width-input {
+  flex: 1 1 calc(50% - 10px); /* Dos columnas en pantallas grandes */
+  min-width: 280px; /* Ancho mínimo para que no se apriete demasiado */
+}
+
+/* Para los toggles, que no son mat-form-field */
+.toggle-margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.full-width-button {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 1.1em;
+  padding: 10px 0;
+  background-color: #003366; /* Un azul más oscuro para los botones principales */
+  color: white;
+}
+
+.full-width-button:hover {
+  background-color: #002244;
+}
+
+.dashboard-divider {
+  margin: 40px 0;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+/* Estilos para las acciones en la tabla */
+.mat-icon-button {
+  margin: 0 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .full-width-input {
+    flex: 1 1 100%; /* Una columna en pantallas pequeñas */
+  }
+}
