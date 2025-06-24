@@ -1,19 +1,42 @@
 .horas-sello-wrapper {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 30px 40px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 50, 100, 0.15);
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #f9fcff, #eef5ff);
+  border-radius: 20px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .titulo-principal {
   text-align: center;
-  color: #003366;
-  font-size: 2rem;
+  color: #002f6c;
+  font-size: 2.4rem;
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.titulo-principal::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background-color: #0077d9;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 .tabla-contenedor {
@@ -23,29 +46,69 @@
 .tabla-horas {
   width: 100%;
   border-collapse: collapse;
-  text-align: center;
   font-size: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 80, 160, 0.05);
+  animation: fadeInTable 1s ease-in;
+}
+
+@keyframes fadeInTable {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .tabla-horas thead {
-  background: linear-gradient(90deg, #00509e, #0077d9);
+  background: linear-gradient(to right, #00509e, #0077d9);
   color: white;
-  font-weight: 600;
 }
 
 .tabla-horas th,
 .tabla-horas td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
+  padding: 14px 18px;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.tabla-horas tbody tr {
+  transition: background-color 0.3s ease;
 }
 
 .tabla-horas tbody tr:hover {
-  background-color: #f0f8ff;
+  background-color: #e9f3ff;
 }
 
 .total-horas {
   margin-top: 30px;
-  font-size: 1.2rem;
-  color: #00509e;
+  font-size: 1.3rem;
+  color: #004080;
   text-align: right;
+  font-weight: bold;
+}
+
+/* Botón volver */
+.btn-volver {
+  display: inline-block;
+  margin-bottom: 25px;
+  padding: 12px 24px;
+  background: linear-gradient(to right, #0077d9, #00509e);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 119, 217, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-volver:hover {
+  background: linear-gradient(to right, #00509e, #003f7f);
+  transform: scale(1.05);
 }

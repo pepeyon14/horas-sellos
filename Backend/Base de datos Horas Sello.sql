@@ -1,5 +1,6 @@
 #------------------- Tablas -------------------------
 
+
 CREATE TABLE Alumno(
 	RutAlumno CHAR(9) PRIMARY KEY,
     Nombre VARCHAR(30) NOT NULL,
@@ -56,7 +57,7 @@ CREATE TABLE RegistroHoras(
 
 CREATE VIEW ConsultaHoras AS 
 SELECT 
-	rh.FechaInicio,
+    rh.FechaInicio,
     rh.FechaTermino,
     rh.CantidadHoras AS HorasRegistradas,
     e.Nombre AS NombreEvento,
@@ -64,8 +65,9 @@ SELECT
     adm.Nombre AS NombreAdm,
     adm.Apellido AS ApellidoAdm
 FROM RegistroHoras rh
-JOIN Evento e ON rh.ID_Evento
-JOIN Administrativos adm ON rh.RutAdministrativos;
+JOIN Evento e ON rh.ID_Evento = e.ID_Evento
+JOIN Administrativos adm ON rh.RutAdministrativos = adm.RutAdministrativos;
+
 
 
 #----------------------- Datos de prueba -------------------------

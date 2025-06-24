@@ -1,19 +1,23 @@
 <div class="login-wrapper">
   <div class="login-card">
-    <h2 class="mat-card-title">Consulta de Horas Sello</h2>
+    <h2>Consulta de Horas Sello</h2>
 
     <label for="rut">Ingresa tu RUT:</label>
     <input
-      class="full-width-input"
-      [(ngModel)]="rut"
-      placeholder="Ej: 12345678-9"
       id="rut"
+      type="text"
+      placeholder="Ej: 12345678-9"
+      [(ngModel)]="rut"
+      (keydown.enter)="irAHorasSello()"
+      autocomplete="off"
+      class="full-width-input"
+      autofocus
     />
 
-    <!-- Botón para consultar horas -->
+    <div *ngIf="errorRut" style="color: red; margin-top: 8px;">{{ errorRut }}</div>
+
     <button class="full-width-button" (click)="irAHorasSello()">Consultar</button>
 
-    <!-- Botón para volver al inicio con estilo personalizado -->
     <button class="full-width-button back-button" (click)="volverInicio()">Volver al Inicio</button>
   </div>
 </div>

@@ -8,7 +8,6 @@ export interface Alumno {
   Apellido: string;
   Facultad: string;
   Carrera: string;
-  Correo: string;
   Generacion: number;
 }
 
