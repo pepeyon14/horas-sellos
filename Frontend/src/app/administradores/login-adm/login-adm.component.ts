@@ -41,7 +41,7 @@ export class LoginAdmComponent {
         next: (res) => {
           localStorage.setItem('token', res.token);
           // redirige a la vista protegida
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/menu']);
         },
         error: (err) => {
           alert(err.error?.error || 'Credenciales inválidas');

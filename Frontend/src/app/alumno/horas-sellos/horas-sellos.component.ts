@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HorasSellosService, RegistroHoras } from '../services/horas-sellos.service';
+import { HorasSellosService, RegistroHoras } from '../../services/horas-sellos.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 

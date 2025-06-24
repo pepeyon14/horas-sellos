@@ -18,8 +18,8 @@ module.exports = (db) => {
     }
   }
 
-  // ---------- GET /api/eventos/listar ----------
-  router.get('/listar', async (req, res) => {
+  // ---------- GET /api/eventos ----------
+  router.get('/', async (req, res) => {
     // if (!verifyToken(req, res)) return;
 
     try {

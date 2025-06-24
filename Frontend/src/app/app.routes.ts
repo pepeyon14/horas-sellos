@@ -1,18 +1,28 @@
 import { Routes } from '@angular/router';
-import { LoginAdmComponent } from './login-adm/login-adm.component';
-import { DashboardAdm } from './dashboard-adm/dashboard-adm';
+import { LoginAdmComponent } from './administradores/login-adm/login-adm.component';
 import { AlumnoComponent } from './alumno/alumno.component';
-import { HorasSellosComponent } from './horas-sellos/horas-sellos.component';
+import { HorasSellosComponent } from './alumno/horas-sellos/horas-sellos.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { MenuComponent } from './administradores/menu/menu.component';
+import { EventoComponent } from './administradores/evento/evento.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },  
+  // Home
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'login', component: LoginAdmComponent },
+
+  // Rutas para Alumnos y Administradores
+  { path: 'inicio', component: InicioComponent },
+
+  // Rutas para Alumnos
   { path: 'alumno', component: AlumnoComponent },
   { path: 'horas-sellos', component: HorasSellosComponent },
   { path: 'horas-sellos/:rut', component: HorasSellosComponent },
-  { path: 'dashboard', component: DashboardAdm },
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
-  { path: '**', redirectTo: '/inicio' } 
+
+  // Rutas para Administradores
+  { path: 'login', component: LoginAdmComponent },
+  { path: 'menu', component: MenuComponent },
+  { path: 'evento', component: EventoComponent },
+
+  { path: '**', redirectTo: 'inicio' }
 ];

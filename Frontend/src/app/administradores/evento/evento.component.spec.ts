@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardAdm } from './dashboard-adm';
+import { EventoComponent } from './evento.component';
 
-describe('DashboardAdm', () => {
-  let component: DashboardAdm;
-  let fixture: ComponentFixture<DashboardAdm>;
+describe('EventoComponent', () => {
+  let component: EventoComponent;
+  let fixture: ComponentFixture<EventoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardAdm]
+      imports: [EventoComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(DashboardAdm);
+    
+    fixture = TestBed.createComponent(EventoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
