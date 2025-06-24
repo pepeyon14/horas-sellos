@@ -5,25 +5,29 @@
     <table class="tabla-horas">
       <thead>
         <tr>
-          <th>ID Evento</th>
+          <th>Nombre del Evento</th>
           <th>Validador</th>
           <th>Fecha Inicio</th>
           <th>Fecha Término</th>
           <th>Horas</th>
-
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let registro of registros">
-          <td>{{ registro.ID_Evento }}</td>
-          <td>{{ registro.RutAdministrativos }}</td>
-          <td>{{ registro.Fechalnicio | date: 'shortDate' }}</td>
-          <td>{{ registro.FechaTermino | date: 'shortDate' }}</td>
-          <td>{{ registro.CantidadHoras }}</td>
+          <td>{{ registro.NombreEvento }}</td>
+          <td>{{ registro.NombreAdm }} {{ registro.ApellidoAdm }}</td>
+          <td>{{ registro.FechaInicio | date: 'short' }}</td>
+          <td>{{ registro.FechaTermino | date: 'short' }}</td>
+          <td>{{ registro.HorasRegistradas }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <p class="total-horas">Total de horas: <strong>{{ totalHoras }}</strong></p>
+  <p class="total-horas">
+    Total de horas registradas: <strong>{{ totalHoras }}</strong>
+  </p>
+
+  <button (click)="volverAtras()" class="btn-volver">← Volver</button>
+
 </div>

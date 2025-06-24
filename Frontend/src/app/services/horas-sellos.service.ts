@@ -7,9 +7,13 @@ import { Observable } from 'rxjs';
   ID_Evento: number;
   RutAlumno: string;
   RutAdministrativos: string;
-  Fechalnicio: Date;
+  FechaInicio: Date;
   FechaTermino: Date;
   CantidadHoras: number;
+  NombreEvento: string;
+  NombreAdm: string;
+  ApellidoAdm: string;
+  HorasRegistradas: number;
 }
 
 @Injectable({
@@ -17,8 +21,8 @@ import { Observable } from 'rxjs';
 })
 export class HorasSellosService {
 
-  private apiUrl = 'http://localhost:3000/api/horassello'; // Ajusta la URL según tu backend
-
+  private apiUrl = 'http://localhost:3000/api/horassello';
+  
   constructor(private http: HttpClient) {}
 
   obtenerHorasPorRut(rut: string): Observable<RegistroHoras[]> {

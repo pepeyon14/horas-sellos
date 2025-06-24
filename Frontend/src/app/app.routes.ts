@@ -6,10 +6,12 @@ import { HorasSellosComponent } from './horas-sellos/horas-sellos.component';
 import { InicioComponent } from './inicio/inicio.component';
 
 export const routes: Routes = [
-  {path: '', component: InicioComponent},
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },  
+  { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginAdmComponent },
   { path: 'alumno', component: AlumnoComponent },
   { path: 'horas-sellos', component: HorasSellosComponent },
+  { path: 'horas-sellos/:rut', component: HorasSellosComponent },
   { path: 'dashboard', component: DashboardAdm },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/inicio' } 
