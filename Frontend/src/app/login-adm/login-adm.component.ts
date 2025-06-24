@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common'; // Para directivas como *ngIf
 import { FormsModule } from '@angular/forms'; // Para [(ngModel)]
 import { Router } from '@angular/router';
@@ -12,26 +13,44 @@ import { MatIconModule } from '@angular/material/icon'; // Si usas <mat-icon>
 
 
 @Component({
-  selector: 'app-login-adm', // Selector estándar en kebab-case
+  selector: 'app-login-adm',
   standalone: true,
-  imports: [ // ¡Aquí están todas las importaciones!
+  imports: [
     CommonModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule // Inclúyelo si estás usando los iconos en tu HTML
+    MatIconModule
   ],
   templateUrl: './login-adm.component.html',
-  styleUrl: './login-adm.component.css'
+  styleUrls: ['./login-adm.component.css']
 })
-export class LoginAdmComponent {
-  // Aquí irá la lógica de tu componente (vacía por ahora)
 
-    constructor(private router: Router) {}
-    
-    volverInicio() {
+export class LoginAdmComponent {
+  rut = '';
+  password = '';
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  login() {
+    const body = { rut: this.rut, password: this.password };
+
+    this.http.post<{ token: string }>('http://localhost:3000/api/administrativos/login', body)
+      .subscribe({
+        next: (res) => {
+          localStorage.setItem('token', res.token);
+          // redirige a la vista protegida
+          this.router.navigate(['/horas-sellos']);
+        },
+        error: (err) => {
+          alert(err.error?.error || 'Credenciales inválidas');
+        }
+      });
+  }
+
+  volverInicio() {
     this.router.navigate(['/']);
   }
 }

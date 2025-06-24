@@ -2,28 +2,26 @@
   <mat-card class="login-card">
     <mat-card-title>Login de Administradores</mat-card-title>
     <mat-card-content>
-      <form>
-        <!-- Campo de Usuario -->
+      <form (ngSubmit)="login()">
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Usuario</mat-label>
-          <input matInput placeholder="Ingrese su rut">
+          <input matInput placeholder="Ingrese su rut" [(ngModel)]="rut" name="rut" required>
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
 
-        <!-- Campo de Contraseña -->
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" placeholder="Ingrese su contraseña">
+          <input matInput type="password" placeholder="Ingrese su contraseña"
+                [(ngModel)]="password" name="password" required>
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
 
-        <!-- Botón de login -->
         <button mat-raised-button color="primary" type="submit" class="full-width-button">
           Iniciar Sesión
         </button>
 
-        <!-- Botón para volver -->
-        <button mat-raised-button type="button" class="full-width-button back-button" (click)="volverInicio()">
+        <button mat-raised-button type="button" class="full-width-button back-button"
+                (click)="volverInicio()">
           Volver al Inicio
         </button>
       </form>
