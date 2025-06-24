@@ -27,6 +27,13 @@ const listarRegistro = require('./horas-sello/Registros/listar-horas')(db);
 const editarRegistro = require('./horas-sello/Registros/editar-horas')(db);
 const eliminarRegistro = require('./horas-sello/Registros/eliminar-horas')(db);
 
+// Importar las rutas de los alumnos
+const consultarHoras = require('./horas-sello/Alumnos/consultarHoras')(db);
+const crearAlumnos = require('./horas-sello/Alumnos/crear-alumnos')(db);
+const listarAlumnos = require('./horas-sello/Alumnos/listar-alumnos')(db);
+const editarAlumnos = require('./horas-sello/Alumnos/editar-alumnos')(db);
+const eliminarAlumnos = require('./horas-sello/Alumnos/eliminar-alumnos')(db);
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -55,5 +62,12 @@ app.use('/api/registros', crearRegistro); // POST  /api/registros/crear
 app.use('/api/registros', listarRegistro); // GET   /api/registros/listar
 app.use('/api/registros', editarRegistro); // PUT   /api/registros/editar
 app.use('/api/registros', eliminarRegistro); // DELETE /api/registros/eliminar
+
+// Usar las rutas de los alumnos
+app.use('/api/consultar-horas', consultarHoras); // GET /api/consultar-horas/
+app.use('/api/alumnos', crearAlumnos); // POST  /api/alumnos/crear
+app.use('/api/alumnos', listarAlumnos); // GET   /api/alumnos/list
+app.use('/api/alumnos', editarAlumnos); // PUT   /api/alumnos/editar
+app.use('/api/alumnos', eliminarAlumnos); // DELETE /api/alumnos/eliminar
 
 app.listen(3000, () => console.log('Servidor en :3000'));

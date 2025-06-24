@@ -18,46 +18,43 @@ export class AlumnoComponent {
   constructor(private router: Router, private horasSellosService: HorasSellosService) {}
 
   validarRut(rut: string): boolean {
-    const rutRegex = /^\d{7,8}-[\dkK]$/;
-    if (!rutRegex.test(rut)) return false;
+    rut = rut.replace(/[.\-]/g, '');
+    if (!/^\d{7,8}[\dkK]$/.test(rut)) return false;
 
-    const [cuerpo, dv] = rut.split('-');
-    let suma = 0;
-    let multiplo = 2;
+    const cuerpo = rut.slice(0, -1);
+    const dv     = rut.slice(-1).toUpperCase();
 
+    let suma = 0, multiplo = 2;
     for (let i = cuerpo.length - 1; i >= 0; i--) {
       suma += parseInt(cuerpo.charAt(i), 10) * multiplo;
       multiplo = multiplo < 7 ? multiplo + 1 : 2;
     }
 
-    const dvEsperado = 11 - (suma % 11);
-    const dvCalculado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+    const resto = 11 - (suma % 11);
+    const dvEsperado = resto === 11 ? '0' : resto === 10 ? 'K' : resto.toString();
 
-    return dv.toUpperCase() === dvCalculado;
+    return dv === dvEsperado;
   }
 
   irAHorasSello() {
     if (!this.validarRut(this.rut)) {
-      this.errorRut = 'Formato de RUT inválido.';
+      this.errorRut = 'RUT inválido. Debe incluir el dígito verificador (0-9 o K).';
       return;
     }
-    this.errorRut = '';
 
+    this.errorRut = '';
     this.horasSellosService.obtenerHorasPorRut(this.rut).subscribe({
       next: (datos: RegistroHoras[]) => {
         if (datos && datos.length > 0) {
-          this.errorRut = '';
           this.router.navigate(['/horas-sellos', this.rut]);
         } else {
           this.errorRut = 'No se encontraron horas para ese RUT.';
         }
       },
       error: (err) => {
-        if (err.status === 404) {
-          this.errorRut = 'No se encontraron horas para ese RUT.';
-        } else {
-          this.errorRut = 'Error al consultar las horas.';
-        }
+        this.errorRut = err.status === 404
+          ? 'No se encontraron horas para ese RUT.'
+          : 'Error al consultar las horas.';
       }
     });
   }

@@ -2,29 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
- export interface RegistroHoras {
-  ID_HoraSello: number;
-  ID_Evento: number;
+export interface RegistroHoras {
   RutAlumno: string;
-  RutAdministrativos: string;
-  FechaInicio: Date;
-  FechaTermino: Date;
-  CantidadHoras: number;
+  NombreAlumno: string;
+  ApellidoAlumno: string;
+  FechaInicio: string;
+  FechaTermino: string;
+  HorasRegistradas: number;
   NombreEvento: string;
+  HorasEvento: number;
   NombreAdm: string;
   ApellidoAdm: string;
-  HorasRegistradas: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class HorasSellosService {
+  private apiUrl = 'http://localhost:3000/api/consultar-horas';
 
-  private apiUrl = 'http://localhost:3000/api/horassello';
-  
   constructor(private http: HttpClient) {}
 
+  /** Devuelve todas las horas de un alumno */
   obtenerHorasPorRut(rut: string): Observable<RegistroHoras[]> {
     return this.http.get<RegistroHoras[]>(`${this.apiUrl}/alumno/${rut}`);
   }

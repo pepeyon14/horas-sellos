@@ -18,7 +18,7 @@ module.exports = (db) => {
     }
   }
 
-  // ---------- POST /api/registro-horas/crear ----------
+  // ---------- POST /api/registros/crear ----------
   router.post('/crear', async (req, res) => {
     // if (!verifyToken(req, res)) return;
 

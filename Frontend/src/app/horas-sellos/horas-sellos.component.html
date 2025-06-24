@@ -1,33 +1,41 @@
-<div class="horas-sello-wrapper">
-  <h2 class="titulo-principal">Horas Sello del alumno: {{ rut }}</h2>
+<h2>Resumen de Horas Sello de {{ nombreCompleto }}</h2>
 
-  <div class="tabla-contenedor">
-    <table class="tabla-horas">
-      <thead>
-        <tr>
-          <th>Nombre del Evento</th>
-          <th>Validador</th>
-          <th>Fecha Inicio</th>
-          <th>Fecha Término</th>
-          <th>Horas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let registro of registros">
-          <td>{{ registro.NombreEvento }}</td>
-          <td>{{ registro.NombreAdm }} {{ registro.ApellidoAdm }}</td>
-          <td>{{ registro.FechaInicio | date: 'short' }}</td>
-          <td>{{ registro.FechaTermino | date: 'short' }}</td>
-          <td>{{ registro.HorasRegistradas }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<table mat-table [dataSource]="horas" class="mat-elevation-z8 full-width-table">
 
-  <p class="total-horas">
-    Total de horas registradas: <strong>{{ totalHoras }}</strong>
-  </p>
+  <ng-container matColumnDef="evento">
+    <th mat-header-cell *matHeaderCellDef> Evento </th>
+    <td mat-cell *matCellDef="let h"> {{ h.NombreEvento }} </td>
+  </ng-container>
 
-  <button (click)="volverAtras()" class="btn-volver">← Volver</button>
+  <ng-container matColumnDef="fechaInicio">
+    <th mat-header-cell *matHeaderCellDef> Inicio </th>
+    <td mat-cell *matCellDef="let h"> {{ h.FechaInicio | date:'short' }} </td>
+  </ng-container>
 
-</div>
+  <ng-container matColumnDef="fechaTermino">
+    <th mat-header-cell *matHeaderCellDef> Término </th>
+    <td mat-cell *matCellDef="let h"> {{ h.FechaTermino | date:'short' }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="horasRegistradas">
+    <th mat-header-cell *matHeaderCellDef> Horas Registradas </th>
+    <td mat-cell *matCellDef="let h"> {{ h.HorasRegistradas }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="horasEvento">
+    <th mat-header-cell *matHeaderCellDef> Horas Evento </th>
+    <td mat-cell *matCellDef="let h"> {{ h.HorasEvento }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="administrador">
+    <th mat-header-cell *matHeaderCellDef> Responsable </th>
+    <td mat-cell *matCellDef="let h"> {{ h.NombreAdm }} {{ h.ApellidoAdm }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row        *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<p><strong>Total de horas registradas:</strong> {{ getTotalHoras() }}</p>
+
+<button mat-raised-button color="primary" (click)="volver()">Volver</button>
