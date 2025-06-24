@@ -1,23 +1,17 @@
-function conexiondb(app, cors, mysql, express) {
-  app.use(cors());
-  app.use(express.json());
+require('dotenv').config(); // Cargar variables de entorno desde .env
+const mysql = require('mysql2');
 
-  const db = mysql.createConnection({
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'root',
-    password: '123456789',
-    database: 'horas_sello'
-  });
-
-  db.connect((err) => {
-    if (err) {
-      console.error('Error de conexión a la base de datos:', err);
-      return;
-    }
-    console.log('Conectado a la base de datos MySQL');
-  });
-  return db;
-}
+// Definir la función de conexión
+const conexiondb = () =>
+  mysql
+    .createPool({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+      waitForConnections: true,
+      connectionLimit: 10,
+    })
+    .promise();
 
 module.exports = conexiondb;
