@@ -28,7 +28,7 @@ module.exports = (db) => {
 
     try {
       const [rows] = await db.execute(
-        'SELECT RutEncargado AS rut, Nombre, Apellido, Correo, Telefono FROM Encargado'
+        'SELECT RutEncargado, Nombre, Apellido, Correo, Telefono FROM Encargado'
       );
       res.json(rows);
     } catch (err) {

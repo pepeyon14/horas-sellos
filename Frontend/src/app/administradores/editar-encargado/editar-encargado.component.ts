@@ -35,12 +35,12 @@ export class EditarEncargadoComponent implements OnInit {
 
   guardar(): void {
     this.encargadoSrv.editar(this.rut, this.encargado).subscribe({
-      next: ()  => this.router.navigate(['/encargados']),
+      next: ()  => this.router.navigate(['/admin/encargados']),
       error: () => alert('Error al guardar cambios')
     });
   }
 
   cancelar(): void {
-    this.router.navigate(['/encargados']);
+    this.router.navigate(['/admin/encargados']);
   }
 }

@@ -7,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-evento',
-  templateUrl: './editar-evento.component.html',
-  styleUrls: ['./editar-evento.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule] // Import FormsModule for template-driven forms
+  imports: [FormsModule, CommonModule],
+  templateUrl: './editar-evento.component.html',
+  styleUrls: ['./editar-evento.component.css']
 })
 export class EditarEventoComponent implements OnInit {
   evento: Evento = {
@@ -31,17 +31,28 @@ export class EditarEventoComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+
     this.eventoService.getEventoPorId(id).subscribe({
-      next: (res) => this.evento = res,
+      next: (res) => {
+        /* ⬇️ recortamos a yyyy-MM-dd para <input type="date"> */
+        res.Fecha = res.Fecha?.slice(0, 10);
+        this.evento = res;
+      },
       error: (err) => console.error('Error al cargar evento', err)
     });
   }
 
-  actualizarEvento() {
-    this.eventoService.editarEvento(this.evento.ID_Evento!, this.evento).subscribe({
-      next: () => this.router.navigate(['/admin/eventos']),
+  actualizarEvento(): void {
+    /* opcional: si tu backend requiere la hora en 00:00:00 */
+    const body: Evento = {
+      ...this.evento,
+      Fecha: this.evento.Fecha + ' 00:00:00'     // <-- o deja solo la fecha si tu BD lo acepta
+    };
+
+    this.eventoService.editarEvento(this.evento.ID_Evento!, body).subscribe({
+      next: () => this.router.navigate(['/admin/evento']),
       error: (err) => console.error('Error al actualizar evento', err)
     });
   }

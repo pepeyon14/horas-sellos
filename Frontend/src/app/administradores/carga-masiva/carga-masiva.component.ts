@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 interface FormCarga {
   ID_Evento:         number;
@@ -14,7 +15,7 @@ interface FormCarga {
 @Component({
   selector: 'app-carga-masiva',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './carga-masiva.component.html',
   styleUrls: ['./carga-masiva.component.css']
 })

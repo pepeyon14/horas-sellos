@@ -1,5 +1,5 @@
 export interface Encargado {
-  rut: string;
+  RutEncargado: string;
   Nombre: string;
   Apellido: string;
   Correo: string;

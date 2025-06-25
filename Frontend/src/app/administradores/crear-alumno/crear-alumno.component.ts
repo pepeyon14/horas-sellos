@@ -38,12 +38,12 @@ export class CrearAlumnoComponent {
     };
 
     this.alumnoSrv.crear(payload).subscribe({
-      next: () => this.router.navigate(['/alumnos']),
+      next: () => this.router.navigate(['/admin/alumnos']),
       error: err => alert(err.error?.error ?? 'Error al crear')
     });
   }
 
   cancelar(): void {
-    this.router.navigate(['/alumnos']);
+    this.router.navigate(['/admin/alumnos']);
   }
 }

@@ -1,3 +1,4 @@
+<button routerLink="/menu">volver</button>
 <div class="dashboard-container">
   <div class="dashboard-card">
     <h1 class="dashboard-title">Gestión de Encargados</h1>
@@ -20,14 +21,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let e of encargados">
-          <td>{{ e.rut}}</td>
+          <td>{{ e.RutEncargado}}</td>
           <td>{{ e.Nombre }}</td>
           <td>{{ e.Apellido }}</td>
           <td>{{ e.Correo }}</td>
           <td>{{ e.Telefono }}</td>
           <td>
-            <button (click)="irAEditar(e.rut)">Editar</button>
-            <button (click)="irAEliminar(e.rut)">Eliminar</button>
+            <button (click)="irAEditar(e.RutEncargado)">Editar</button>
+            <button (click)="irAEliminar(e.RutEncargado)">Eliminar</button>
           </td>
         </tr>
       </tbody>

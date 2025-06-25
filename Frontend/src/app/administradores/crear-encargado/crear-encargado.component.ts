@@ -15,7 +15,7 @@ import { Encargado } from '../../models/encargado.models';
 export class CrearEncargadoComponent {
 
   encargado: Encargado = {
-    rut: '',
+    RutEncargado: '',
     Nombre: '',
     Apellido: '',
     Correo: '',
@@ -28,7 +28,7 @@ export class CrearEncargadoComponent {
 
   guardar() {
     this.encargadoSrv.crear(this.encargado).subscribe({
-      next: () => this.router.navigate(['/encargados']),
+      next: () => this.router.navigate(['/admin/encargados']),
       error: err => {
         console.error('Error al crear encargado:', err);
         this.error = 'No se pudo crear el encargado';
@@ -37,6 +37,6 @@ export class CrearEncargadoComponent {
   }
 
   cancelar(): void {
-    this.router.navigate(['/encargados']);
+    this.router.navigate(['/admin/encargados']);
   }
 }

@@ -91,11 +91,11 @@ module.exports = (db) => {
     try {
       const [rows] = await db.execute(
         `SELECT
-           RutEncargado AS rut,
-           Nombre       AS nombre,
-           Apellido     AS apellido,
-           Correo       AS correo,
-           Telefono     AS telefono
+           RutEncargado
+           Nombre
+           Apellido
+           Correo
+           Telefono
          FROM Encargado`
       );
       res.json(rows);
@@ -111,11 +111,11 @@ module.exports = (db) => {
     try {
       const [rows] = await db.execute(
         `SELECT
-           RutEncargado AS rut,
-           Nombre       AS nombre,
-           Apellido     AS apellido,
-           Correo       AS correo,
-           Telefono     AS telefono
+           RutEncargado,
+           Nombre,   
+           Apellido,
+           Correo,
+           Telefono
          FROM Encargado
          WHERE RutEncargado = ?`,
         [rut]

@@ -42,12 +42,12 @@ export class EditarAlumnoComponent implements OnInit {
     };
 
     this.alumnoSrv.editar(this.rut, payload).subscribe({
-      next: () => this.router.navigate(['/alumnos']),
+      next: () => this.router.navigate(['/admin/alumnos']),
       error: ()  => alert('Error al guardar cambios')
     });
   }
 
   cancelar(): void {
-    this.router.navigate(['/alumnos']);
+    this.router.navigate(['/admin/alumnos']);
   }
 }

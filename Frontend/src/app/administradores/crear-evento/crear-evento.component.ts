@@ -27,7 +27,7 @@ export class CrearEventoComponent {
 
   crearEvento() {
     this.eventoService.crearEvento(this.evento).subscribe({
-      next: () => this.router.navigate(['/admin/eventos']),
+      next: () => this.router.navigate(['/admin/evento']),
       error: (err) => console.error('Error al crear evento', err)
     });
   }

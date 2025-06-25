@@ -7,7 +7,7 @@ module.exports = (db) => {
   // POST /api/encargados/crear
   router.post('/crear', async (req, res) => {
     const {
-      rut: rut,
+      RutEncargado: rut,
       Nombre: nombre,
       Apellido: apellido,
       Correo: correo,

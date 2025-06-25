@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministrativoService  } from '../../services/administrativo.service';
-import { Administrativo} from '../../models/administrativos.models';
+import { RouterModule } from '@angular/router';
+import { AdministrativoService } from '../../services/administrativo.service';
+import { Administrativo } from '../../models/administrativos.models';
 
 @Component({
   selector: 'app-listar-adm',
   templateUrl: './listar-adm.component.html',
   styleUrls: ['./listar-adm.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class ListarAdmComponent implements OnInit {
   administrativos: Administrativo[] = [];
