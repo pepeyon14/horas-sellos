@@ -1,0 +1,35 @@
+<h2>Crear Registro de Horas Sello</h2>
+
+<form (ngSubmit)="crearRegistro()">
+  <div>
+    <label>Evento ID:</label>
+    <input type="number" [(ngModel)]="registro.ID_Evento" name="ID_Evento" required>
+  </div>
+
+  <div>
+    <label>RUT Alumno:</label>
+    <input type="text" [(ngModel)]="registro.RutAlumno" name="RutAlumno" required>
+  </div>
+
+  <div>
+    <label>RUT Admin:</label>
+    <input type="text" [(ngModel)]="registro.RutAdministrativos" name="RutAdministrativos" required>
+  </div>
+
+  <div>
+    <label>Fecha Inicio:</label>
+    <input type="datetime-local" [(ngModel)]="registro.FechaInicio" name="FechaInicio" required>
+  </div>
+
+  <div>
+    <label>Fecha Término:</label>
+    <input type="datetime-local" [(ngModel)]="registro.FechaTermino" name="FechaTermino" required>
+  </div>
+
+  <div>
+    <label>Cantidad de horas:</label>
+    <input type="number" [(ngModel)]="registro.CantidadHoras" name="CantidadHoras" required>
+  </div>
+
+  <button type="submit">Guardar</button>
+</form>

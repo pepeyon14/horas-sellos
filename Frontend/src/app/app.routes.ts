@@ -14,6 +14,9 @@ import { ListarEncargadoComponent } from './administradores/listar-encargado/lis
 import { CrearEncargadoComponent } from './administradores/crear-encargado/crear-encargado.component';
 import { EditarEncargadoComponent } from './administradores/editar-encargado/editar-encargado.component';
 import { ListarEventoComponent } from './administradores/listar-evento/evento.component';
+import { ListarRegistroHorasComponent } from './administradores/listar-registro-horas-component/listar-registro-horas-component.component';
+import { CrearRegistroHorasComponent } from './administradores/crear-registro-horas/crear-registro-horas.component';
+import { EditarRegistroHorasComponent } from './administradores/editar-registro-horas/editar-registro-horas.component';
 
 export const routes: Routes = [
   // Home
@@ -41,6 +44,9 @@ export const routes: Routes = [
   { path: 'admin/encargados', component: ListarEncargadoComponent},
   { path: 'admin/encargados/crear', component: CrearEncargadoComponent},
   { path: 'admin/encargados/editar/:rut', component: EditarEncargadoComponent},
+  { path: 'admin/registro-horas', component: ListarRegistroHorasComponent },
+  { path: 'admin/registro-horas/crear', component: CrearRegistroHorasComponent},
+  { path: 'admin/registro-horas/editar/:id', component: EditarRegistroHorasComponent},
 
   { path: '**', redirectTo: 'inicio' }
 ];

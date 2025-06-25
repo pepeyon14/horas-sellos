@@ -1,47 +1,31 @@
 const express = require('express');
-const jwt     = require('jsonwebtoken');
 
 module.exports = (db) => {
   const router = express.Router();
 
-  // ---------- Verificador de token ----------
-  function verifyToken(req, res) {
-    const header = req.headers.authorization;
-    if (!header) { res.status(401).json({ error: 'Sin token' }); return false; }
-    const token = header.split(' ')[1];
-    try {
-      req.user = jwt.verify(token, process.env.JWT_SECRET);
-      return true;
-    } catch {
-      res.status(401).json({ error: 'Token inválido' });
-      return false;
-    }
-  }
-
-  // ---------- PUT /api/registro-horas/editar/:id ----------
+  /* ---------- PUT /api/registros/editar/:id ---------- */
   router.put('/editar/:id', async (req, res) => {
-    // if (!verifyToken(req, res)) return;
-
     const { id } = req.params;
+
     const {
-      idEvento,
-      rutAlumno,
-      rutAdmin,
-      fechaInicio,
-      fechaTermino,
-      cantidadHoras
+      ID_Evento,
+      RutAlumno,
+      RutAdministrativos,
+      FechaInicio,
+      FechaTermino,
+      CantidadHoras
     } = req.body || {};
 
-    const set = [];
+    const set  = [];
     const vals = [];
 
     try {
-      if (idEvento)      { set.push('ID_Evento = ?');         vals.push(idEvento); }
-      if (rutAlumno)     { set.push('RutAlumno = ?');         vals.push(rutAlumno); }
-      if (rutAdmin)      { set.push('RutAdministrativos = ?');vals.push(rutAdmin); }
-      if (fechaInicio)   { set.push('FechaInicio = ?');       vals.push(fechaInicio); }
-      if (fechaTermino)  { set.push('FechaTermino = ?');      vals.push(fechaTermino); }
-      if (cantidadHoras !== undefined) { set.push('CantidadHoras = ?'); vals.push(cantidadHoras); }
+      if (ID_Evento)            { set.push('ID_Evento = ?');          vals.push(ID_Evento); }
+      if (RutAlumno)            { set.push('RutAlumno = ?');          vals.push(RutAlumno); }
+      if (RutAdministrativos)   { set.push('RutAdministrativos = ?'); vals.push(RutAdministrativos); }
+      if (FechaInicio)          { set.push('FechaInicio = ?');        vals.push(FechaInicio); }
+      if (FechaTermino)         { set.push('FechaTermino = ?');       vals.push(FechaTermino); }
+      if (CantidadHoras !== undefined) { set.push('CantidadHoras = ?'); vals.push(CantidadHoras); }
 
       if (!set.length)
         return res.status(400).json({ error: 'Nada que actualizar' });
@@ -60,6 +44,26 @@ module.exports = (db) => {
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Error al actualizar registro' });
+    }
+  });
+
+  /* ---------- GET /api/registros/obtener/:id ---------- */
+  router.get('/obtener/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const [rows] = await db.execute(
+        'SELECT * FROM RegistroHoras WHERE ID_HoraSello = ?',
+        [id]
+      );
+
+      if (!rows.length)
+        return res.status(404).json({ error: 'Registro no encontrado' });
+
+      res.json(rows[0]);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error al obtener registro' });
     }
   });
 

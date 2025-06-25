@@ -46,6 +46,4 @@ export class ListarAlumnoComponent implements OnInit {
       }
     });
   }
-
-
 }

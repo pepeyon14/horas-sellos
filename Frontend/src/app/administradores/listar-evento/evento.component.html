@@ -1,3 +1,4 @@
+<button [routerLink]="['/admin/eventos/crear']">Crear</button>
 <table>
   <thead>
     <tr>
@@ -17,13 +18,12 @@
       <td>{{ evento.Nombre }}</td>
       <td>{{ evento.Descripcion }}</td>
       <td>{{ evento.RutEncargado }}</td>
-      <td>{{ evento.Fecha }}</td>
+      <td>{{ evento.Fecha | date:'short' }}</td>
       <td>{{ evento.Tipo }}</td>
       <td>{{ evento.Publico }}</td>
       <td>{{ evento.CantidadHoras }}</td>
       <td>{{ evento.Estado }}</td>
       <td>
-        <button [routerLink]="['/admin/eventos/crear']">Crear</button>
         <button [routerLink]="['/admin/eventos/editar', evento.ID_Evento]">Editar</button>
         <button (click)="eliminarEvento(evento.ID_Evento!)">Eliminar</button>
       </td>

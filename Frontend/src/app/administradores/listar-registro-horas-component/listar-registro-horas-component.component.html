@@ -1,0 +1,37 @@
+<h2>Registros de Horas Sello</h2>
+
+<div>
+  <button [routerLink]="['/admin/registro-horas/crear']">Crear registro</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Evento</th>
+      <th>RUT Alumno</th>
+      <th>RUT Admin</th>
+      <th>Inicio</th>
+      <th>Término</th>
+      <th>Horas</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of registros">
+      <td>{{ r.ID_HoraSello }}</td>
+      <td>{{ r.ID_Evento }}</td>
+      <td>{{ r.RutAlumno }}</td>
+      <td>{{ r.RutAdministrativos }}</td>
+      <td>{{ r.FechaInicio | date:'short' }}</td>
+      <td>{{ r.FechaTermino | date:'short' }}</td>
+      <td>{{ r.CantidadHoras }}</td>
+      <td>
+        <button [routerLink]="['/admin/registro-horas/editar', r.ID_HoraSello]">Editar</button>
+        <button (click)="eliminarRegistro(r.ID_HoraSello!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="error">{{ error }}</div>

@@ -1,5 +1,4 @@
 const express = require('express');
-const jwt     = require('jsonwebtoken');
 
 module.exports = (db) => {
   const router = express.Router();
