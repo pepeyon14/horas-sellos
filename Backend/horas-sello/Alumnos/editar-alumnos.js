@@ -58,5 +58,20 @@ module.exports = (db) => {
     }
   });
 
+  router.get('/:rut', async (req, res) => {
+  const { rut } = req.params;
+  try {
+    const [rows] = await db.execute(
+      'SELECT * FROM Alumno WHERE RutAlumno = ?',
+      [rut]
+    );
+    if (!rows.length)
+      return res.status(404).json({ error: 'Alumno no encontrado' });
+    res.json(rows[0]);
+  } catch (err) {
+    console.error('Error al obtener alumno', err);
+    res.status(500).json({ error: 'Error al obtener alumno' });
+  }
+});
   return router;
 };

@@ -1,0 +1,39 @@
+<div class="dashboard-container">
+  <div class="dashboard-card">
+
+    <h1 class="dashboard-title">Gestión de Alumnos</h1>
+
+    <div class="toolbar">
+      <h2>Todos los alumnos</h2>
+      <button class="crear-btn" [routerLink]="['/admin/alumnos/crear']">Crear alumno</button>
+    </div>
+
+    <table class="eventos-table">
+      <thead>
+        <tr>
+          <th>RUT</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Facultad</th>
+          <th>Carrera</th>
+          <th>Generación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of alumnos">
+          <td>{{ a.RutAlumno }}</td>
+          <td>{{ a.Nombre }}</td>
+          <td>{{ a.Apellido }}</td>
+          <td>{{ a.Facultad }}</td>
+          <td>{{ a.Carrera }}</td>
+          <td>{{ a.Generacion }}</td>
+          <td>
+            <button (click)="irAEditar(a.RutAlumno)">Editar</button>
+            <button (click)="irAEliminar(a.RutAlumno)">Eliminar</button>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

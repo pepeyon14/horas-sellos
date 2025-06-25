@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Rut Encargado</th>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Público</th>
+      <th>Horas</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let evento of eventos">
+      <td>{{ evento.Nombre }}</td>
+      <td>{{ evento.Descripcion }}</td>
+      <td>{{ evento.RutEncargado }}</td>
+      <td>{{ evento.Fecha }}</td>
+      <td>{{ evento.Tipo }}</td>
+      <td>{{ evento.Publico }}</td>
+      <td>{{ evento.CantidadHoras }}</td>
+      <td>{{ evento.Estado }}</td>
+      <td>
+        <button [routerLink]="['/admin/eventos/crear']">Crear</button>
+        <button [routerLink]="['/admin/eventos/editar', evento.ID_Evento]">Editar</button>
+        <button (click)="eliminarEvento(evento.ID_Evento!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

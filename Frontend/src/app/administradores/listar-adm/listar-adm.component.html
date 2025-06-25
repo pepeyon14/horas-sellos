@@ -1,0 +1,26 @@
+<div class="dashboard-container">
+  <div class="dashboard-card">
+    <h1 class="dashboard-title">Listado de Administradores</h1>
+
+    <table class="eventos-table">
+      <thead>
+        <tr>
+          <th>RUT</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Cargo</th>
+          <th>Correo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of administrativos">
+          <td>{{ a.rut }}</td>
+          <td>{{ a.Nombre }}</td>
+          <td>{{ a.Apellido }}</td>
+          <td>{{ a.Cargo }}</td>
+          <td>{{ a.Correo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

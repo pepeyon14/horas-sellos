@@ -19,13 +19,13 @@ module.exports = (db) => {
   }
 
   /* ---------- GET /api/alumnos/listar ---------- */
-  router.get('/listar', async (req, res) => {
+  router.get('/', async (req, res) => {
     // if (!verifyToken(req, res)) return;
 
     try {
       const [rows] = await db.execute(`
         SELECT
-          RutAlumno AS rut,
+          RutAlumno,
           Nombre,
           Apellido,
           Facultad,

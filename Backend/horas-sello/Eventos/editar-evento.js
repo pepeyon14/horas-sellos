@@ -1,23 +1,29 @@
 // horas-sello/Eventos/editar-evento.js
 const express = require('express');
-const jwt     = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 module.exports = (db) => {
   const router = express.Router();
 
-  // ---------- Verificador de token ----------
-  function verifyToken(req, res) {
-    const header = req.headers.authorization;
-    if (!header) { res.status(401).json({ error: 'Sin token' }); return false; }
-    const token = header.split(' ')[1];
+  // ---------- GET /api/eventos/:id ----------
+  router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
     try {
-      req.user = jwt.verify(token, process.env.JWT_SECRET);
-      return true;
-    } catch {
-      res.status(401).json({ error: 'Token inválido' });
-      return false;
+      const [rows] = await db.execute(
+        'SELECT * FROM EVENTO WHERE ID_Evento = ?',
+        [id]
+      );
+
+      if (!rows.length)
+        return res.status(404).json({ error: 'Evento no encontrado' });
+
+      res.json(rows[0]); // ← enviamos el registro
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error al obtener evento' });
     }
-  }
+  });
 
   // ---------- PUT /api/eventos/editar/:id ----------
   router.put('/editar/:id', async (req, res) => {
@@ -25,28 +31,28 @@ module.exports = (db) => {
 
     const { id } = req.params;
     const {
-      nombre,
-      descripcion,
-      rutEncargado,
-      fecha,
-      tipo,
-      publico,
-      cantidadHoras,
-      estado
+      Nombre,
+      Descripcion,
+      RutEncargado,
+      Fecha,
+      Tipo,
+      Publico,
+      CantidadHoras,
+      Estado
     } = req.body || {};
 
-    const set = [];
+    const set  = [];
     const vals = [];
 
     try {
-      if (nombre)         { set.push('Nombre = ?');         vals.push(nombre); }
-      if (descripcion !== undefined) { set.push('Descripcion = ?');   vals.push(descripcion); }
-      if (rutEncargado)   { set.push('RutEncargado = ?');   vals.push(rutEncargado); }
-      if (fecha)          { set.push('Fecha = ?');          vals.push(fecha); }
-      if (tipo !== undefined)         { set.push('Tipo = ?');           vals.push(tipo); }
-      if (publico !== undefined)      { set.push('Publico = ?');        vals.push(publico); }
-      if (cantidadHoras !== undefined) { set.push('CantidadHoras = ?'); vals.push(cantidadHoras); }
-      if (estado !== undefined)       { set.push('Estado = ?');         vals.push(estado); }
+      if (Nombre)                    { set.push('Nombre = ?');         vals.push(Nombre); }
+      if (Descripcion !== undefined) { set.push('Descripcion = ?');    vals.push(Descripcion); }
+      if (RutEncargado)              { set.push('RutEncargado = ?');   vals.push(RutEncargado); }
+      if (Fecha)                     { set.push('Fecha = ?');          vals.push(Fecha); }
+      if (Tipo !== undefined)        { set.push('Tipo = ?');           vals.push(Tipo); }
+      if (Publico !== undefined)     { set.push('Publico = ?');        vals.push(Publico); }
+      if (CantidadHoras !== undefined){ set.push('CantidadHoras = ?'); vals.push(CantidadHoras); }
+      if (Estado !== undefined)      { set.push('Estado = ?');         vals.push(Estado); }
 
       if (!set.length)
         return res.status(400).json({ error: 'Nada que actualizar' });

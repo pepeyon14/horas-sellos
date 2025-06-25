@@ -4,7 +4,16 @@ import { AlumnoComponent } from './alumno/alumno.component';
 import { HorasSellosComponent } from './alumno/horas-sellos/horas-sellos.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { MenuComponent } from './administradores/menu/menu.component';
-import { EventoComponent } from './administradores/evento/evento.component';
+import { CrearEventoComponent } from './administradores/crear-evento/crear-evento.component';
+import { EditarEventoComponent } from './administradores/editar-evento/editar-evento.component';
+import { ListarAlumnoComponent } from './administradores/listar-alumno/listar-alumno.component';
+import { CrearAlumnoComponent } from './administradores/crear-alumno/crear-alumno.component';
+import { EditarAlumnoComponent } from './administradores/editar-alumno/editar-alumno.component';
+import { ListarAdmComponent } from './administradores/listar-adm/listar-adm.component';
+import { ListarEncargadoComponent } from './administradores/listar-encargado/listar-encargado.component';
+import { CrearEncargadoComponent } from './administradores/crear-encargado/crear-encargado.component';
+import { EditarEncargadoComponent } from './administradores/editar-encargado/editar-encargado.component';
+import { ListarEventoComponent } from './administradores/listar-evento/evento.component';
 
 export const routes: Routes = [
   // Home
@@ -22,7 +31,16 @@ export const routes: Routes = [
   // Rutas para Administradores
   { path: 'login', component: LoginAdmComponent },
   { path: 'menu', component: MenuComponent },
-  { path: 'evento', component: EventoComponent },
+  { path: 'admin/evento', component: ListarEventoComponent },
+  { path: 'admin/eventos/crear', component: CrearEventoComponent },
+  { path: 'admin/eventos/editar/:id', component: EditarEventoComponent },
+  { path: 'admin/alumnos', component: ListarAlumnoComponent },
+  { path: 'admin/alumnos/crear', component: CrearAlumnoComponent},
+  { path: 'admin/alumnos/editar/:rut', component: EditarAlumnoComponent },
+  { path: 'admin/administrativos', component: ListarAdmComponent},
+  { path: 'admin/encargados', component: ListarEncargadoComponent},
+  { path: 'admin/encargados/crear', component: CrearEncargadoComponent},
+  { path: 'admin/encargados/editar/:rut', component: EditarEncargadoComponent},
 
   { path: '**', redirectTo: 'inicio' }
 ];

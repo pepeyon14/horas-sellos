@@ -1,0 +1,38 @@
+<div class="dashboard-container">
+  <div class="dashboard-card">
+    <h1 class="dashboard-title">Gestión de Encargados</h1>
+
+    <div class="toolbar">
+      <h2>Todos los encargados</h2>
+      <button class="crear-btn" (click)="irACrear()">Crear encargado</button>
+    </div>
+
+    <table class="eventos-table">
+      <thead>
+        <tr>
+          <th>RUT</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of encargados">
+          <td>{{ e.rut}}</td>
+          <td>{{ e.Nombre }}</td>
+          <td>{{ e.Apellido }}</td>
+          <td>{{ e.Correo }}</td>
+          <td>{{ e.Telefono }}</td>
+          <td>
+            <button (click)="irAEditar(e.rut)">Editar</button>
+            <button (click)="irAEliminar(e.rut)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="error">{{ error }}</p>
+  </div>
+</div>

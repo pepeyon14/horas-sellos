@@ -46,7 +46,7 @@ app.use('/api/administrativos', editarAdm); // PUT   /api/administrativos/editar
 app.use('/api/administrativos', eliminarAdm); // DELETE /api/administrativos/eliminar
 
 // Usar las rutas de los encargados
-app.use('/api/encargados', crearencargado); // POST  /api/encargados/crear
+app.use('/api/encargados', crearencargado);   // POST /api/encargados/crear
 app.use('/api/encargados', listarencargado); // GET   /api/encargados/listar
 app.use('/api/encargados', editarencargado); // PUT   /api/encargados/editar
 app.use('/api/encargados', eliminarencargado); // DELETE /api/encargados/eliminar

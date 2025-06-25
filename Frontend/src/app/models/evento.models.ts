@@ -1,11 +1,11 @@
 export interface Evento {
-  id: number;
+  ID_Evento?: number;
   Nombre: string;
-  Descripcion: string;
+  Descripcion: string | null;
   RutEncargado: string;
   Fecha: string;
-  Tipo: boolean;
-  Publico: boolean;
+  Tipo: number;
+  Publico: number;
   CantidadHoras: number;
-  Estado: boolean;
+  Estado: number;
 }

@@ -1,0 +1,20 @@
+<form (ngSubmit)="actualizarEvento()">
+  <input type="text" [(ngModel)]="evento.Nombre" name="Nombre" required>
+  <input type="text" [(ngModel)]="evento.Descripcion" name="Descripcion">
+  <input type="text" [(ngModel)]="evento.RutEncargado" name="RutEncargado" required>
+  <input type="date" [(ngModel)]="evento.Fecha" name="Fecha" required>
+  <select [(ngModel)]="evento.Tipo" name="Tipo">
+    <option [value]="0">Tipo 0</option>
+    <option [value]="1">Tipo 1</option>
+  </select>
+  <select [(ngModel)]="evento.Publico" name="Publico">
+    <option [value]="0">Privado</option>
+    <option [value]="1">Público</option>
+  </select>
+  <input type="number" [(ngModel)]="evento.CantidadHoras" name="CantidadHoras">
+  <select [(ngModel)]="evento.Estado" name="Estado">
+    <option [value]="0">Inactivo</option>
+    <option [value]="1">Activo</option>
+  </select>
+  <button type="submit">Actualizar</button>
+</form>

@@ -3,29 +3,12 @@ const jwt     = require('jsonwebtoken');
 
 module.exports = (db) => {
   const router = express.Router();
-
-  // ---------- Verificador de token ----------
-  function verifyToken(req, res) {
-    const header = req.headers.authorization;
-    if (!header) { res.status(401).json({ error: 'Sin token' }); return false; }
-    const token = header.split(' ')[1];
-    try {
-      req.user = jwt.verify(token, process.env.JWT_SECRET);
-      return true;
-    } catch {
-      res.status(401).json({ error: 'Token inválido' });
-      return false;
-    }
-  }
-
   // ---------- GET /api/eventos ----------
   router.get('/', async (req, res) => {
-    // if (!verifyToken(req, res)) return;
-
     try {
       const [rows] = await db.execute(`
         SELECT 
-          ID_Evento AS id,
+          ID_Evento,
           Nombre,
           Descripcion,
           RutEncargado,

@@ -9,30 +9,24 @@ export class EventoService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Evento[]> {
-    return this.http.get<Evento[]>(this.apiUrl);
+  getEventos() {
+    return this.http.get<Evento[]>('/api/eventos');
   }
 
-  cambiarEstado(evento: Evento): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${evento.id}/estado`, {
-      estado: !evento.Estado
-    });
+  getEventoPorId(id: number) {
+    return this.http.get<Evento>(`/api/eventos/${id}`);
   }
 
-  // Métodos adicionales según necesidad
-  obtenerPorId(id: number): Observable<Evento> {
-    return this.http.get<Evento>(`${this.apiUrl}/${id}`);
+  editarEvento(id: number, evento: Evento) {
+    return this.http.put(`/api/eventos/editar/${id}`, evento);
   }
 
-  crear(evento: Evento): Observable<any> {
-    return this.http.post(this.apiUrl, evento);
+  crearEvento(evento: Evento) {
+    return this.http.post('/api/eventos/crear', evento);
   }
 
-  editar(id: number, evento: Evento): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, evento);
+  eliminarEvento(id: number) {
+    return this.http.delete(`/api/eventos/eliminar/${id}`);
   }
 
-  eliminar(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
 }

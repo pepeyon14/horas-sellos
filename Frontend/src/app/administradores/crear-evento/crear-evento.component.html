@@ -1,0 +1,54 @@
+<form (ngSubmit)="crearEvento()">
+  <div>
+    <label for="Nombre">Nombre:</label>
+    <input type="text" id="Nombre" [(ngModel)]="evento.Nombre" name="Nombre" required>
+  </div>
+  <br>
+  <div>
+    <label for="Descripcion">Descripción:</label>
+    <input type="text" id="Descripcion" [(ngModel)]="evento.Descripcion" name="Descripcion">
+  </div>
+<br>
+  <div>
+    <label for="RutEncargado">RUT Encargado:</label>
+    <input type="text" id="RutEncargado" [(ngModel)]="evento.RutEncargado" name="RutEncargado" required>
+  </div>
+<br>
+  <div>
+    <label for="Fecha">Fecha:</label>
+    <input type="date" id="Fecha" [(ngModel)]="evento.Fecha" name="Fecha" required>
+  </div>
+<br>
+  <div>
+    <label for="Tipo">Tipo:</label>
+    <select id="Tipo" [(ngModel)]="evento.Tipo" name="Tipo">
+      <option [value]="0">Tipo 0</option>
+      <option [value]="1">Tipo 1</option>
+    </select>
+  </div>
+<br>
+  <div>
+    <label for="Publico">Público:</label>
+    <select id="Publico" [(ngModel)]="evento.Publico" name="Publico">
+      <option [value]="0">Privado</option>
+      <option [value]="1">Público</option>
+    </select>
+  </div>
+<br>
+  <div>
+    <label for="CantidadHoras">Cantidad de horas:</label>
+    <input type="number" id="CantidadHoras" [(ngModel)]="evento.CantidadHoras" name="CantidadHoras">
+  </div>
+<br>
+  <div>
+    <label for="Estado">Estado:</label>
+    <select id="Estado" [(ngModel)]="evento.Estado" name="Estado">
+      <option [value]="0">Inactivo</option>
+      <option [value]="1">Activo</option>
+    </select>
+  </div>
+<br>
+  <div>
+    <button type="submit">Crear evento</button>
+  </div>
+</form>

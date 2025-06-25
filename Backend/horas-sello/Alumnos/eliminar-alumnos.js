@@ -3,25 +3,8 @@ const jwt     = require('jsonwebtoken');
 
 module.exports = (db) => {
   const router = express.Router();
-
-  /* ---------- Verificador de token (opcional) ---------- */
-  function verifyToken(req, res) {
-    const header = req.headers.authorization;
-    if (!header) { res.status(401).json({ error: 'Sin token' }); return false; }
-    const token = header.split(' ')[1];
-    try {
-      req.user = jwt.verify(token, process.env.JWT_SECRET);
-      return true;
-    } catch {
-      res.status(401).json({ error: 'Token inválido' });
-      return false;
-    }
-  }
-
   /* ---------- DELETE /api/alumnos/eliminar/:rut ---------- */
   router.delete('/eliminar/:rut', async (req, res) => {
-    // if (!verifyToken(req, res)) return;
-
     const { rut } = req.params;
 
     try {

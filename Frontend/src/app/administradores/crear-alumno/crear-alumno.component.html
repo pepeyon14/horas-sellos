@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+  <div class="dashboard-card">
+
+    <h1 class="dashboard-title">Crear nuevo alumno</h1>
+
+    <form (ngSubmit)="guardar()">
+
+      <label>RUT:
+        <input type="text" [(ngModel)]="alumno.RutAlumno" name="rut" required>
+      </label>
+
+      <label>Nombre:
+        <input type="text" [(ngModel)]="alumno.Nombre" name="nombre" required>
+      </label>
+
+      <label>Apellido:
+        <input type="text" [(ngModel)]="alumno.Apellido" name="apellido" required>
+      </label>
+
+      <label>Facultad:
+        <input type="text" [(ngModel)]="alumno.Facultad" name="facultad" required>
+      </label>
+
+      <label>Carrera:
+        <input type="text" [(ngModel)]="alumno.Carrera" name="carrera" required>
+      </label>
+
+      <label>Generación:
+        <input type="number"
+               [(ngModel)]="alumno.Generacion"
+               name="generacion"
+               min="1990"
+               max="2100"
+               required>
+      </label>
+
+      <div class="toolbar" style="justify-content:flex-end; margin-top:20px;">
+        <button class="crear-btn" type="submit">Guardar</button>
+        <button class="crear-btn" type="button" (click)="cancelar()" style="background:#9e9e9e">
+          Cancelar
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
