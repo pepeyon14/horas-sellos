@@ -1,0 +1,38 @@
+<h2>Carga masiva de horas sello</h2>
+
+<form (ngSubmit)="subirExcel()" enctype="multipart/form-data">
+  <div>
+    <label>Archivo Excel (.xlsx):</label>
+    <input type="file" (change)="onFile($event)" accept=".xlsx" required>
+  </div>
+
+  <div>
+    <label>ID Evento:</label>
+    <input type="number" [(ngModel)]="form.ID_Evento" name="ID_Evento" required>
+  </div>
+
+  <div>
+    <label>RUT Administrador:</label>
+    <input type="text" [(ngModel)]="form.RutAdministrativos" name="RutAdministrativos" required>
+  </div>
+
+  <div>
+    <label>Fecha Inicio:</label>
+    <input type="datetime-local" [(ngModel)]="form.FechaInicio" name="FechaInicio" required>
+  </div>
+
+  <div>
+    <label>Fecha Término:</label>
+    <input type="datetime-local" [(ngModel)]="form.FechaTermino" name="FechaTermino" required>
+  </div>
+
+  <div>
+    <label>Cantidad de horas:</label>
+    <input type="number" [(ngModel)]="form.CantidadHoras" name="CantidadHoras" required>
+  </div>
+
+  <button type="submit" [disabled]="loading">Subir Excel</button>
+  <span *ngIf="loading">Cargando…</span>
+</form>
+
+<div *ngIf="mensaje">{{ mensaje }}</div>

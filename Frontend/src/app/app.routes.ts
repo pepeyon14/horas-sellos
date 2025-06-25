@@ -17,6 +17,7 @@ import { ListarEventoComponent } from './administradores/listar-evento/evento.co
 import { ListarRegistroHorasComponent } from './administradores/listar-registro-horas-component/listar-registro-horas-component.component';
 import { CrearRegistroHorasComponent } from './administradores/crear-registro-horas/crear-registro-horas.component';
 import { EditarRegistroHorasComponent } from './administradores/editar-registro-horas/editar-registro-horas.component';
+import { CargaMasivaComponent } from './administradores/carga-masiva/carga-masiva.component';
 
 export const routes: Routes = [
   // Home
@@ -47,6 +48,7 @@ export const routes: Routes = [
   { path: 'admin/registro-horas', component: ListarRegistroHorasComponent },
   { path: 'admin/registro-horas/crear', component: CrearRegistroHorasComponent},
   { path: 'admin/registro-horas/editar/:id', component: EditarRegistroHorasComponent},
+  { path: 'admin/carga-masiva', component: CargaMasivaComponent},
 
   { path: '**', redirectTo: 'inicio' }
 ];

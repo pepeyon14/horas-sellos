@@ -26,6 +26,7 @@ const crearRegistro = require('./horas-sello/Registros/crear-horas')(db);
 const listarRegistro = require('./horas-sello/Registros/listar-horas')(db);
 const editarRegistro = require('./horas-sello/Registros/editar-horas')(db);
 const eliminarRegistro = require('./horas-sello/Registros/eliminar-horas')(db);
+const cargaMasiva = require('./horas-sello/Registros/carga-masiva')(db);
 
 // Importar las rutas de los alumnos
 const consultarHoras = require('./horas-sello/Alumnos/consultarHoras')(db);
@@ -62,6 +63,7 @@ app.use('/api/registros', crearRegistro); // POST  /api/registros/crear
 app.use('/api/registros', listarRegistro); // GET   /api/registros/listar
 app.use('/api/registros', editarRegistro); // PUT   /api/registros/editar
 app.use('/api/registros', eliminarRegistro); // DELETE /api/registros/eliminar
+app.use('/api/registros', cargaMasiva); // POST  /api/registros/cargar-excel
 
 // Usar las rutas de los alumnos
 app.use('/api/consultar-horas', consultarHoras); // GET /api/consultar-horas/
